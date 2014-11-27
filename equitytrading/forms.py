@@ -35,7 +35,7 @@ class ProfessionalForm(forms.ModelForm):
 	
 	class Meta:
 		# associate form with the Professional Model
-		model = Professional
+		model = Business
 		fields = ('name', 'logo', 'location', 'industry', 'description', 'type_of_service')
 
 class UserForm(forms.ModelForm):

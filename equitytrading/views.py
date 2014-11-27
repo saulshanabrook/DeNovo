@@ -7,32 +7,33 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import RequestContext
+from django.core.context_processors import csrf # csrf - cross site request forgery. 
 from equitytrading.forms import *
 from equitytrading.models import *
 
 # display main page
 def home(request):
-	context = RequestContext(request)
+	#context = RequestContext(request)
 	context_dict = {}
 
-	return render_to_response('index.html', context_dict, context)
+	return render(request, 'index.html', context_dict)
 
 # dispaly info page for startups
 def startups(request):
 	startup_list = Startup.objects.all().order_by('name')
-	context = RequestContext(request)
-	context_dict = {}
+	#context = RequestContext(request)
+	context_dict = {'startups': startup_list}
 
-	return render_to_response('info.html', context_dict, context)
+	return render(request, 'info.html', context_dict)
 
 # display info page for professionals 
 def businesses(request):
 	biz_list = Business.objects.all().order_by('name')
-	context = RequestContext(request)
-	context_dict = {}
+	#context = RequestContext(request)
+	context_dict = {'business': biz_list}
 	
 	# dispaly restricted profiles
-	return render_to_response('info.html', context_dict, context)
+	return render(request, 'info.html', context_dict)
 
 # display registrations page
 def registration(request):
