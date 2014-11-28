@@ -17,6 +17,16 @@ def home(request):
 	context_dict = {}
 
 	return render(request, 'index.html', context_dict)
+	
+# display "How It Works" page
+def hiw(request):
+	context_dict = {}
+	return render(request, 'info.html', context_dict)
+	
+# display "About" page
+def about(request):
+	context_dict = {}
+	return render(request, 'info.html', context_dict)
 
 # dispaly info page for startups
 def startups(request):
