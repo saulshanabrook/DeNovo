@@ -55,10 +55,22 @@
 			</div>
 		</nav>
 		
-		<!--About section-->
+		<!--Login section-->
 		<section>
 			<div class="container-fluid">
 				<div class="jumbotron">
+					<form id="login_form" method="post" action="/login/">
+						{% csrf_token %}
+						<div class="form-group">
+						Username: <input type="text" name="username" value="" size="50" />
+						</div>
+						<div class="form-group">
+						Password: <input type="password" name="password" value="" size="50" />
+						</div>
+
+						<button type="submit" value="submit" class="btn btn-primary btn-lg">Submit</button>
+					</form>
+					<h5>Not an user? <a href="/register">Sign Up</a></h5>
 				</div>
 			</div>
 		</section>

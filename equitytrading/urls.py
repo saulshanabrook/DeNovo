@@ -11,4 +11,5 @@ urlpatterns = patterns('',
 		url(r'^about/', views.about, name = 'about'),
 		url(r'^startup/', views.startups, name = 'startup'),
 		url(r'^business/', views.businesses, name = 'business'),
-		url(r'^register/', views.registration, name = 'registration'))
+		url(r'^register/', views.registration, name = 'registration'),
+		url(r'^login/', views.user_login, name = 'login'))
