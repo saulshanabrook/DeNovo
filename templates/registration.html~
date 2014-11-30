@@ -65,7 +65,7 @@
 					{% else %}
 						<strong>register here:</strong><br />
 
-						<form id="profile_form" method="post" action="/register/" enctype="multipart/form-data">
+						<form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
 
 							{% csrf_token %}
 

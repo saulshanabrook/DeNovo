@@ -13,7 +13,7 @@ from django.core.validators import RegexValidator
 class UserProfile(models.Model):
 	user = 					models.OneToOneField(User)
 	date_created = 			models.DateTimeField(default = timezone.now())
-	catogory = 				models.CharField(max_length = 15) 			#  startup or professional?
+	category = 				models.CharField(max_length = 15) 			#  startup or professional?
 														
 	# print name field
 	def __unicode__ (self):
