@@ -55,19 +55,22 @@
 			</div>
 		</nav>
 		
-		<!--Profile section-->
+		<!--Account info section-->
 		<section>
 			<div class="container-fluid">
-				<div class="jumbotron">
-					{% if list %}
-						<ul>
-							{% for indi in list %}
-								<li>{{ indi.name }}</li>
-							{% endfor %}
-						</ul>
-					{% else %}
-						<strong>There are no companies present.</strong>
-					{% endif %}
+				<div class="jumbotron" style="text-align:left;">
+					<form id="company_form" method="post" action="/myaccount/" enctype="multipart/form-data">
+
+							{% csrf_token %}
+
+							<!-- Display form. The as_p method wraps each element in a paragraph
+							(<p>) element. This ensures each element appears on a new line,
+							making everything look neater. -->
+							{{ form.as_p }}
+
+							<!-- Provide a button to click to submit the form. -->
+							<input type="submit" name="submit" value="Register" />
+					</form>
 				</div>
 			</div>
 		</section>

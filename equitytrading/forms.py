@@ -47,7 +47,11 @@ class UserForm(forms.ModelForm):
 		fields = ('username', 'password', 'email')
 		
 class UserProfileForm(forms.ModelForm):
-	category = 	forms.CharField(max_length = 15, help_text = "Are you a startup or a business?") 			#  startup or professional?
+	CATEGORY_CHOICES = (
+		('S', 'Startup'),
+		('B', 'Business'),
+	)
+	category = 	forms.ChoiceField(widget=forms.RadioSelect, choices=CATEGORY_CHOICES) 			#  startup or professional?
 	
 	class Meta:
 		# associate form with the UserProfile Model

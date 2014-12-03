@@ -13,7 +13,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
-USERNAME = ''
 
 def home(request):
 	'''
@@ -35,10 +34,10 @@ def about(request):
 
 def startups(request):
 	'''
-	dispaly info page for startups
+	display info page for startups
 	'''
 	startup_list = Startup.objects.all().order_by('name')
-	context_dict = {'startups': startup_list}
+	context_dict = {'list': startup_list}
 
 	return render(request, 'profiles.html', context_dict)
 
@@ -47,9 +46,9 @@ def businesses(request):
 	display info page for professionals 
 	'''
 	biz_list = Business.objects.all().order_by('name')
-	context_dict = {'business': biz_list}
+	context_dict = {'list': biz_list}
 	
-	# dispaly restricted profiles
+	# display restricted profiles
 	return render(request, 'profiles.html', context_dict)
 
 def registration(request):
@@ -61,8 +60,12 @@ def registration(request):
 		user_form = UserForm(data = request.POST)
 		profile_form = UserProfileForm(data = request.POST)
 		if user_form.is_valid() and profile_form.is_valid():
-			user_form.save()						# save profiles
-			profile_form.save()
+			user = user_form.save()						# save profiles
+			user.set_password(user.password)
+			user.save()
+			profile = profile_form.save(commit = False)
+			profile.user = user
+			profile.save()
 			registered = True						# register successful
 		else:
 			print user_form.errors, profile_form.errors
@@ -85,7 +88,6 @@ def user_login(request):
 		user = authenticate(username = username, password = password)
 		if user:
 			if user.is_active:
-				USERNAME = username
 				login(request, user)
 				return HttpResponseRedirect('/myaccount/')				#! need to fill in with page 
 			else: 											# not active account
@@ -101,11 +103,10 @@ def user_account(request):
 	'''
 	user account page
 	'''	
-	#username = request.user.username				# get user info
-	user = UserProfile.objects.get(username = USERNAME)			# get the usr object????
-	category = user.categrory			
+	user_profile = UserProfile.objects.get(user = request.user)
+	category = user_profile.category			
 
-	if category == 'startup':						# startup
+	if category == 'S':						# startup
 		if request.method == 'POST':
 			form = StartupForm(data = request.POST)
 		else:

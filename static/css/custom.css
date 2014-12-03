@@ -1,8 +1,49 @@
+/* the whole body of web page */
 body{
 	text-align: center;
 	font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+/* Links */
+a,
+a:hover,
+a:focus,
+a:active,
+a.active {
+    outline: 0;
+}
+
+a {
+    color: #fed136;
+}
+
+a:hover,
+a:focus,
+a:active,
+a.active {
+    color: #fec503;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+}
+
+/* Paragraph */
+p {
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+
+/* Navigation bar */
 .navbar-default{
 	background-color: white !important;
 }
@@ -17,6 +58,7 @@ body{
 	width: 30%;
 }
 
+/* Header */
 header{
 	background-attachment: scroll;
 	color: #000;
@@ -50,12 +92,15 @@ header .intro .intro-text{
     line-height: 22px;
 }
 
+/* Startup section in homepage */
 section#startup{
 }
 
-section#professional{
+/* Business section in homepage */
+section#business{
 }
 
+/* Background picture sections */
 section#pic1 h1{
 	padding-top: 200px;
 	padding-bottom: 200px;
@@ -66,7 +111,12 @@ section#pic2{
 	padding-bottom: 200px;
 }
 
+/* Footer */
 footer{
+}
+
+footer ul.social-buttons {
+    margin-bottom: 0;
 }
 
 footer ul.social-buttons li a{
@@ -82,4 +132,10 @@ footer ul.social-buttons li a{
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     transition: all .3s;
+}
+
+footer ul.social-buttons li a:hover,
+footer ul.social-buttons li a:focus,
+footer ul.social-buttons li a:active {
+    background-color: #fed136;
 }

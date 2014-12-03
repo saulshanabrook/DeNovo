@@ -11,9 +11,13 @@ from django.core.validators import RegexValidator
 
 # account profile
 class UserProfile(models.Model):
+	CATEGORY_CHOICES = (
+		('S', 'Startup'),
+		('B', 'Business'),
+	)
 	user = 					models.OneToOneField(User)
 	date_created = 			models.DateTimeField(default = timezone.now())
-	category = 				models.CharField(max_length = 15) 			#  startup or professional?
+	category = 				models.CharField(max_length = 1, choices=CATEGORY_CHOICES) 			#  startup or professional?
 														
 	# print name field
 	def __unicode__ (self):
