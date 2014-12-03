@@ -38,18 +38,42 @@
 						<li>
 							<a href="/how-it-works">How It Works</a>
 						</li>
-						<li>
-							<a href="/startup">Startups</a>
-						</li>
-						<li>
-							<a href="/business">Businesses</a>
-						</li>
+						{% if type == 'startup' %}
+							<li class="active">
+								<a href="/startup">Startups</a>
+							</li>
+							<li>
+								<a href="/business">Businesses</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="/startup">Startups</a>
+							</li>
+							<li class="active">
+								<a href="/business">Businesses</a>
+							</li>
+						{% endif %}
 						<li>
 							<a href="/about">About</a>
 						</li>
-						<li>
-							<a href="/login">Login</a>
-						</li>
+						{% if user.is_authenticated %}
+							<li>
+								<div class="dropdown">
+									<a class="btn dropdown-toggle" type="button" id="userdropdown" data-toggle="dropdown" aria-expanded="true">
+										{{ user.username }}
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="userdropdown">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="/myaccount/">My Account</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="/logout/">Log Out</a></li>
+									</ul>
+								</div>
+							</li>
+						{% else %}
+							<li>
+								<a href="/login">Login</a>
+							</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -59,15 +83,25 @@
 		<section>
 			<div class="container-fluid">
 				<div class="jumbotron">
-					{% if list %}
-						<ul>
+					<div class="content">
+						{% if list %}
 							{% for indi in list %}
-								<li>{{ indi.name }}</li>
+								{% if forloop.counter0|divisibleby:2 %}
+									<div class="row">
+								{% endif %}
+								<div class="col-md-4">
+									<img src="{{indi.logo.url}}" style="width: 70%; height: auto;">
+									<br>
+									<h4><a href="#">{{ indi.name }}</a></h4>
+								</div>
+								{% if not forloop.counter0|divisibleby:2 or foorloop.last%}
+									</div>
+								{% endif %}
 							{% endfor %}
-						</ul>
-					{% else %}
-						<strong>There are no companies present.</strong>
-					{% endif %}
+						{% else %}
+							<strong>There are no companies present.</strong>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -77,7 +111,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-4">
-						<p>Copyright &copy; 2014 DeNovo </p>
+						<span class="copyright">Copyright &copy; 2014 DeNovo </span>
 					</div>
 					<div class="col-md-4">
 						<ul class="list-inline social-buttons">
@@ -93,7 +127,7 @@
 						</ul>
 					</div>
 					<div class="col-md-4">
-						<p> support@de-novo.org</p>
+						<span class="support"> support@de-novo.org</span>
 					</div>
 				</div>
 			</div>

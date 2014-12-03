@@ -59,26 +59,28 @@
 		<section>
 			<div class="container-fluid">
 				<div class="jumbotron" style="text-align:left;">
-					{% if registered %}
-						<strong>thank you for registering!</strong>
-						<a href="/">Return to the homepage.</a><br />
-					{% else %}
-						<strong>register here:</strong><br />
+					<div class="content">
+						{% if registered %}
+							<strong>thank you for registering!</strong>
+							<a href="/">Return to the homepage.</a><br />
+						{% else %}
+							<strong>register here:</strong><br />
 
-						<form id="profile_form" method="post" action="/register/" enctype="multipart/form-data">
+							<form id="profile_form" method="post" action="/register/" enctype="multipart/form-data">
 
-							{% csrf_token %}
+								{% csrf_token %}
 
-							<!-- Display each form. The as_p method wraps each element in a paragraph
-							(<p>) element. This ensures each element appears on a new line,
-							making everything look neater. -->
-							{{ user_form.as_p }}
-							{{ profile_form.as_p }}
+								<!-- Display each form. The as_p method wraps each element in a paragraph
+								(<p>) element. This ensures each element appears on a new line,
+								making everything look neater. -->
+								{{ user_form.as_p }}
+								{{ profile_form.as_p }}
 
-							<!-- Provide a button to click to submit the form. -->
-							<input type="submit" name="submit" value="Register" />
-						</form>
-					{% endif %}
+								<!-- Provide a button to click to submit the form. -->
+								<input type="submit" name="submit" value="Register" />
+							</form>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -88,7 +90,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-4">
-						<p>Copyright &copy; 2014 DeNovo </p>
+						<span class="copyright">Copyright &copy; 2014 DeNovo </span>
 					</div>
 					<div class="col-md-4">
 						<ul class="list-inline social-buttons">
@@ -104,7 +106,7 @@
 						</ul>
 					</div>
 					<div class="col-md-4">
-						<p> support@de-novo.org</p>
+						<span class="support"> support@de-novo.org</span>
 					</div>
 				</div>
 			</div>

@@ -47,9 +47,24 @@
 						<li>
 							<a href="/about">About</a>
 						</li>
-						<li>
-							<a href="/login">Login</a>
-						</li>
+						{% if user.is_authenticated %}
+							<li>
+								<div class="dropdown">
+									<a class="btn dropdown-toggle" type="button" id="userdropdown" data-toggle="dropdown" aria-expanded="true">
+										{{ user.username }}
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="userdropdown">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="/myaccount/">My Account</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="/logout/">Log Out</a></li>
+									</ul>
+								</div>
+							</li>
+						{% else %}
+							<li>
+								<a href="/login">Login</a>
+							</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -61,7 +76,7 @@
 				<div class="intro">
 					<h2 class="intro-slogan">MAXIMIZE YOUR VENTURE</h2>
 					<p class="intro-text">For early stage companies cash is difficult to come by, and in the business world cash is life. Here at DeNovo we believe every startup should get the opportunity to succeed. Our platform brings together contracted service providers willing to work for your equity. Sign up to connect with the greatest minds in marketing, web development, law and many other areas (we even have a student section for when you require less skill-based tasks). Our talent is revolutionizing the startup world by working for your equity. Prepare for your launch date by registering for our beta below!</p>
-					<a href="#" class="btn btn-info btn-lg">LEARN MORE</a>
+					<a href="#" class="btn btn-xl">LEARN MORE</a>
 				</div>
 			</div>
 		</header>
@@ -74,7 +89,7 @@
 					<p><b>Why DeNovo?</b></p>
 					<p>Whether you’re launch date is next week or next year our network of professionals is ready to help you. The service providers on our platform fill the specialized skills you and your team may be missing. Consider one of DeNovo’s professionals for your next product and save your hard-earned cash. We understand that when you found a startup your equity is your life. We make the exchange process as smooth and equitable as possible by providing recommendations, legal framework, and escrow services.</p>
 					<p>We hope you’ll consider accessing our platform for your next project</p>	
-					<a href="#" class="btn btn-info btn-lg">LEARN MORE</a>
+					<a href="/startup/" class="btn btn-primary">LEARN MORE</a>
 				</div>
 			</div>
 		</section>
@@ -94,7 +109,7 @@
 					<p>We know that work is not always steady. Put your downtime to use by taking on a project for one of DeNovo’s startups. We know that you will find startup work rewarding, because your product will have a direct impact on your return. Perform well, and your equity could be worth thousands! By working with our companies you will not only build a reputation, but you could become to the go-to service provider for the next Facebook!</p>
 					<p><b>Firms:</b></p>
 					<p>Whether you are based out of Silicon Valley or the Midwest, we know that you are always on the lookout for new clients. Taking a job posted by one of our startups will mean an early business-relationship that will pay off down the line. Our inside-access to startups means a steady source of promising and loyal clients, many of which may yield massive business opportunities post-launch.</p>	
-					<a href="#" class="btn btn-info btn-lg">LEARN MORE</a>
+					<a href="/business/" class="btn btn-primary">LEARN MORE</a>
 				</div>
 			</div>
 		</section>
@@ -107,7 +122,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-4">
-						<p>Copyright &copy; 2014 DeNovo </p>
+						<span class="copyright">Copyright &copy; 2014 DeNovo </span>
 					</div>
 					<div class="col-md-4">
 						<ul class="list-inline social-buttons">
@@ -123,7 +138,7 @@
 						</ul>
 					</div>
 					<div class="col-md-4">
-						<p> support@de-novo.org</p>
+						<span class="support"> support@de-novo.org</span>
 					</div>
 				</div>
 			</div>

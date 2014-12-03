@@ -24,20 +24,20 @@ def hiw(request):
 	'''
 	display "How It Works" page
 	'''
-	return render(request, 'info.html')
+	return render(request, 'info.html', {'type': 'hiw'})
 	
 def about(request):
 	'''
 	display "About" page
 	'''
-	return render(request, 'info.html')
+	return render(request, 'info.html', {'type': 'about'})
 
 def startups(request):
 	'''
 	display info page for startups
 	'''
 	startup_list = Startup.objects.all().order_by('name')
-	context_dict = {'list': startup_list}
+	context_dict = {'list': startup_list, 'type': 'startup'}
 
 	return render(request, 'profiles.html', context_dict)
 
@@ -46,7 +46,7 @@ def businesses(request):
 	display info page for professionals 
 	'''
 	biz_list = Business.objects.all().order_by('name')
-	context_dict = {'list': biz_list}
+	context_dict = {'list': biz_list, 'type': 'biz'}
 	
 	# display restricted profiles
 	return render(request, 'profiles.html', context_dict)
@@ -109,11 +109,19 @@ def user_account(request):
 	if category == 'S':						# startup
 		if request.method == 'POST':
 			form = StartupForm(data = request.POST)
+			if form.is_valid():
+				form.save()
+			else:
+				print form.errors
 		else:
 			form = StartupForm()
 	else:											# business
 		if request.method == 'POST':
 			form = BusinessForm(data = request.POST)
+			if form.is_valid():
+				form.save()
+			else:
+				print form.errors
 		else:
 			form = BusinessForm()
 
@@ -124,4 +132,4 @@ def user_account(request):
 @login_required												# require login
 def user_logout(request):
 	logout(request)
-	return HttpResponseRedirect('/home/')
+	return HttpResponseRedirect('/')

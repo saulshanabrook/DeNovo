@@ -47,9 +47,24 @@
 						<li>
 							<a href="/about">About</a>
 						</li>
-						<li>
-							<a href="/login">Login</a>
-						</li>
+						{% if user.is_authenticated %}
+							<li>
+								<div class="dropdown">
+									<a class="btn dropdown-toggle" type="button" id="userdropdown" data-toggle="dropdown" aria-expanded="true">
+										{{ user.username }}
+										<span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="userdropdown">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="/myaccount/">My Account</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="/logout/">Log Out</a></li>
+									</ul>
+								</div>
+							</li>
+						{% else %}
+							<li>
+								<a href="/login">Login</a>
+							</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
@@ -59,18 +74,20 @@
 		<section>
 			<div class="container-fluid">
 				<div class="jumbotron" style="text-align:left;">
-					<form id="company_form" method="post" action="/myaccount/" enctype="multipart/form-data">
+					<div class="content">
+						<form id="company_form" method="post" action="/myaccount/" enctype="multipart/form-data">
 
-							{% csrf_token %}
+								{% csrf_token %}
 
-							<!-- Display form. The as_p method wraps each element in a paragraph
-							(<p>) element. This ensures each element appears on a new line,
-							making everything look neater. -->
-							{{ form.as_p }}
+								<!-- Display form. The as_p method wraps each element in a paragraph
+								(<p>) element. This ensures each element appears on a new line,
+								making everything look neater. -->
+								{{ form.as_p }}
 
-							<!-- Provide a button to click to submit the form. -->
-							<input type="submit" name="submit" value="Register" />
-					</form>
+								<!-- Provide a button to click to submit the form. -->
+								<input type="submit" name="submit" value="Register" />
+						</form>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -80,7 +97,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-4">
-						<p>Copyright &copy; 2014 DeNovo </p>
+						<span class="copyright">Copyright &copy; 2014 DeNovo </span>
 					</div>
 					<div class="col-md-4">
 						<ul class="list-inline social-buttons">
@@ -96,7 +113,7 @@
 						</ul>
 					</div>
 					<div class="col-md-4">
-						<p> support@de-novo.org</p>
+						<span class="support"> support@de-novo.org</span>
 					</div>
 				</div>
 			</div>

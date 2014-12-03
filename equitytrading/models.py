@@ -27,7 +27,7 @@ class UserProfile(models.Model):
 class Startup(models.Model):
 	# about startup
 	name = 					models.CharField(max_length = 100, unique = True)
-	logo = 					models.ImageField()
+	logo = 					models.ImageField(upload_to='profile_images')
 	date_created = 			models.DateTimeField(default = timezone.now())
 	location = 				models.CharField(max_length = 100) 			# dropdown + other for searching
 	industry = 				models.CharField(max_length = 200) 			# dropdown box + other
@@ -48,7 +48,7 @@ class Startup(models.Model):
 class Business(models.Model):
 	# about the company
 	name = 					models.CharField(max_length = 100, unique = True)
-	logo = 					models.ImageField()
+	logo = 					models.ImageField(upload_to='profile_images')
 	date_created = 			models.DateTimeField(default = timezone.now())
 	location = 				models.CharField(max_length = 100) 				# dropdown + other for searching
 	industry = 				models.CharField(max_length = 200) 				# dropdown box + other
