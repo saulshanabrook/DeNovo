@@ -62,6 +62,7 @@
 					<div class="content">
 						<form id="login_form" method="post" action="/login/">
 							{% csrf_token %}
+							<p style="color:red;">{{error}}</p>
 							<div class="form-group">
 							Username: <input type="text" name="username" value="" size="50" />
 							</div>

@@ -91,10 +91,10 @@ def user_login(request):
 				login(request, user)
 				return HttpResponseRedirect('/myaccount/')				# go to my account 
 			else: 											# not active account
-				return HttpResponse("Your account is disabled.")
+				return render(request, 'login.html', {'error': 'Your account is disabled.'})
 		else:												# invalid username or password
 			print "Invalid login details: {0}, {1}".format(username, password)
-			return HttpResponse("Invalid login details supplied.")
+			return render(request, 'login.html', {'error': 'invalid login details supplied'})
 	else:													# not HTTP POST
 		return render(request, 'login.html', {})
 
@@ -110,7 +110,11 @@ def user_account(request):
 		if request.method == 'POST':
 			form = StartupForm(data = request.POST)
 			if form.is_valid():
-				form.save()
+				profile = form.save(commit=False)
+				if 'logo' in request.FILES:
+					profile.logo = request.FILES['logo']
+				profile.save()
+				return render(request, 'useraccount.html', {'success': True})
 			else:
 				print form.errors
 		else:								# not POST
