@@ -7,6 +7,9 @@ from equitytrading.models import *
 from django.contrib.auth.models import User
 
 class StartupForm(forms.ModelForm):
+	'''
+	form for startup online profile
+	'''
 	# required fields
 	name = forms.CharField(max_length = 100, help_text = "Name of Your Venture?")
 	logo = forms.ImageField(help_text = "Upload Your Logo here")
@@ -25,6 +28,9 @@ class StartupForm(forms.ModelForm):
 		fields = ('name', 'logo', 'location', 'industry', 'description', 'service_needed', 'service_detail', 'contact_person', 'contact_email', 'contact_phone_number')
 		
 class BusinessForm(forms.ModelForm):
+	'''
+	forms for online profiles for companies
+	'''
 	# required fields
 	name = forms.CharField(max_length = 128, help_text = "Name of Company?")
 	logo = forms.ImageField(help_text = "Upload Your Logo here")
@@ -39,6 +45,9 @@ class BusinessForm(forms.ModelForm):
 		fields = ('name', 'logo', 'location', 'industry', 'description', 'type_of_service')
 
 class UserForm(forms.ModelForm):
+	'''
+	UserFrom uses built-in User object
+	'''
 	password = forms.CharField(widget = forms.PasswordInput())
 	
 	class Meta:
@@ -47,6 +56,9 @@ class UserForm(forms.ModelForm):
 		fields = ('username', 'password', 'email')
 		
 class UserProfileForm(forms.ModelForm):
+	'''
+	user account form
+	'''
 	CATEGORY_CHOICES = (
 		('S', 'Startup'),
 		('B', 'Business'),

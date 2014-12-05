@@ -9,8 +9,10 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.validators import RegexValidator
 
-# account profile
 class UserProfile(models.Model):
+	'''
+	account profile, includes a built-in User object
+	'''
 	CATEGORY_CHOICES = (
 		('S', 'Startup'),
 		('B', 'Business'),
@@ -23,9 +25,10 @@ class UserProfile(models.Model):
 	def __unicode__ (self):
 		return self.user.username
 
-# online profiles
 class Startup(models.Model):
-	# about startup
+	'''
+	online profiles for startups
+	'''
 	name = 					models.CharField(max_length = 100, unique = True)
 	logo = 					models.ImageField(upload_to='profile_images')
 	date_created = 			models.DateTimeField(default = timezone.now())
@@ -46,13 +49,15 @@ class Startup(models.Model):
 		return self.name
 		
 class Business(models.Model):
-	# about the company
+	'''
+	online profiles for companies
+	'''
 	name = 					models.CharField(max_length = 100, unique = True)
 	logo = 					models.ImageField(upload_to='profile_images')
 	date_created = 			models.DateTimeField(default = timezone.now())
 	location = 				models.CharField(max_length = 100) 				# dropdown + other for searching
 	industry = 				models.CharField(max_length = 200) 				# dropdown box + other
-	type_of_service = 		models.CharField(max_length = 100) 		# dropdown
+	type_of_service = 		models.CharField(max_length = 100) 				# dropdown
 	description = 			models.TextField(max_length = 5000)
 	user_profile = 			models.ForeignKey(UserProfile)
 	

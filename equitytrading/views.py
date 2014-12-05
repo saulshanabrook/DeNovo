@@ -89,7 +89,7 @@ def user_login(request):
 		if user:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect('/myaccount/')				#! need to fill in with page 
+				return HttpResponseRedirect('/myaccount/')				# go to my account 
 			else: 											# not active account
 				return HttpResponse("Your account is disabled.")
 		else:												# invalid username or password
@@ -113,7 +113,7 @@ def user_account(request):
 				form.save()
 			else:
 				print form.errors
-		else:
+		else:								# not POST
 			form = StartupForm()
 	else:											# business
 		if request.method == 'POST':
@@ -122,7 +122,7 @@ def user_account(request):
 				form.save()
 			else:
 				print form.errors
-		else:
+		else:								# not POST
 			form = BusinessForm()
 
 	return render(request, 'useraccount.html', {
